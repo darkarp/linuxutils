@@ -47,6 +47,8 @@ $(OBJ)/%.o: $(LIB)/%.c
 
 utilities: ## Create symbolic links for utilities
 	@mkdir -p $(BIN)
+	@printf "\033[32m[i] Compiling utilities\033[0m\n"
+	@printf "\033[32m[i] They will be located in the $(BIN) folder\033[0m\n"
 	@cd $(BIN) && $(foreach utility,$(UTILITIES),ln -sf $(TARGET) $(utility);)
 
 clean: ## Deletes the build folder
