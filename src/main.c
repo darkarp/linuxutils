@@ -42,8 +42,24 @@ int main(int argc, char *argv[]) {
                    "list\n  %s search <keyword>\n",
                    argv[0], argv[0], argv[0]);
         }
-    } else if (strcmp(baseName, "fsearch") == 0 && argc == 3) {
-        run_fsearch(argv[2], argv[3]);
+    } else if (strcmp(baseName, "fsearch") == 0) {
+        if (argc == 3) {
+            run_fsearch(argv[2], argv[3]);
+        } else {
+            printf("Usage of fsearch:\n");
+            printf("  fsearch [path] [pattern]\n");
+            printf("Search for files in [path] containing [pattern] in their "
+                   "names.\n\n");
+            printf("Arguments:\n");
+            printf("  path     - The directory path where the search should "
+                   "begin.\n");
+            printf("  pattern  - The pattern to search for in file names.\n\n");
+            printf("Example:\n");
+            printf("  fsearch /home/user/docs \"report\"\n");
+            printf("This command searches for files containing \"report\" in "
+                   "their "
+                   "names, starting in /home/user/docs.\n");
+        }
     } else if (strcmp(baseName, "cat") == 0 && argc == 2) {
         run_cat(argv[2]);
     } else if (strcmp(baseName, "ln") == 0) {
