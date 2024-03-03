@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../headers/views/ls.h"
+#include "../headers/views/ls.h"
 
 void run_ls(const char *path);
 
