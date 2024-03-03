@@ -8,10 +8,13 @@
 #define RESET_COLOR "\033[0m"
 
 void run_grep(const char *pattern, const char *filepath) {
-    FILE *file = fopen(filepath, "r");
-    if (!file) {
-        perror("fopen");
-        exit(EXIT_FAILURE);
+    FILE *file = stdin;
+    if (filepath && strcmp(filepath, "-") != 0) {
+        file = fopen(filepath, "r");
+        if (!file) {
+            perror("fopen");
+            exit(EXIT_FAILURE);
+        }
     }
 
     regex_t regex;
@@ -38,7 +41,9 @@ void run_grep(const char *pattern, const char *filepath) {
         }
     }
 
-    fclose(file);
+    if (file != stdin) {
+        fclose(file);
+    }
     if (line) {
         free(line);
     }

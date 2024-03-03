@@ -72,7 +72,15 @@ int main(int argc, char *argv[]) {
         const char *linkname = argv[argc - 1];
         run_ln(target, linkname, symbolic);
     } else if (strcmp(baseName, "grep") == 0) {
-        run_grep(argv[1], argv[2]);
+        if (argc == 2) {
+            run_grep(argv[1], NULL);
+        } else if (argc == 3) {
+            run_grep(argv[1], argv[2]);
+        } else {
+            printf("Usage: %s grep 'pattern' [file]\n", argv[0]);
+            printf("If [file] is omitted, grep reads from standard input.\n");
+            return 1;
+        }
     } else if (strcmp(baseName, "wc") == 0 && argc == 2) {
         run_wc(argv[1]);
     } else {
