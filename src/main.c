@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     baseName = baseName ? baseName + 1 : progName;
 
     if (strcmp(baseName, "ls") == 0) {
-        const char *path = argc > 1 ? argv[1] : ".";
+        // const char *path = argc > 1 ? argv[1] : ".";
         run_main(argc, argv);
         // run_ls(path);
     } else if (strcmp(baseName, "snip") == 0) {
