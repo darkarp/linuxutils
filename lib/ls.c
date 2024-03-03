@@ -21,7 +21,19 @@
 bool show_all = false;
 bool human_readable = false;
 
+void display_help() {
+    printf("Usage: _ls [OPTION]... [DIRECTORY]\n");
+    printf("List information about the DIRECTORY's contents (current directory "
+           "by default).\n\n");
+    printf("Options:\n");
+    printf("  -a, --all              do not ignore entries starting with .\n");
+    printf("  -H, --human-readable   print sizes in human-readable format "
+           "(e.g., 1K 234M 2G)\n");
+    printf("\n");
+}
+
 int run_main(int argc, char *argv[]) {
+    const char *path = ".";
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             display_help();
@@ -29,27 +41,16 @@ int run_main(int argc, char *argv[]) {
         } else if (strcmp(argv[i], "-a") == 0 ||
                    strcmp(argv[i], "--all") == 0) {
             show_all = true;
-        } else if (strcmp(argv[i], "-h") == 0 ||
+        } else if (strcmp(argv[i], "-H") == 0 ||
                    strcmp(argv[i], "--human-readable") == 0) {
             human_readable = true;
+        } else {
+            path = argv[i];
         }
     }
 
-    const char *path = argc > 1 ? argv[1] : ".";
     run_ls(path);
-
     return 0;
-}
-
-void display_help() {
-    printf("Usage: _ls [OPTION]... [FILE]...\n");
-    printf("List information about the FILEs (the current directory by "
-           "default).\n\n");
-    printf("Options:\n");
-    printf("  -a, --all              do not ignore entries starting with .\n");
-    printf("  -h, --human-readable   with -l, print sizes in human readable "
-           "format (e.g., 1K 234M 2G)\n");
-    printf("\n");
 }
 
 void print_permissions(mode_t mode) {
