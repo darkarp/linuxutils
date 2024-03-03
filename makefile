@@ -69,7 +69,8 @@ run: clean objects build ## Cleans, builds and runs the program
 tests: ## Runs library tests
 	@printf "\033[33m[i] Skipping tests: not implemented\033[0m\n"
 
-end:
+.PHONY: end
+end: ## Prints the end message
 	@printf "\033[32m[i] Makefile has finished successfully\033[0m\n"
 
 .PHONY: help
