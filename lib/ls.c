@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <grp.h>
 #include <pwd.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,6 +17,46 @@
 #define FILE_COLOR "\033[0;32m"
 #define EXEC_COLOR "\033[0;31m"
 
+// Global options
+bool show_all = false;
+bool human_readable = false;
+
+void print_permissions(mode_t mode);
+void print_size(long size);
+void run_ls(const char *path);
+void display_help();
+
+int main(int argc, char *argv[]) {
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+            display_help();
+            return 0;
+        } else if (strcmp(argv[i], "-a") == 0 ||
+                   strcmp(argv[i], "--all") == 0) {
+            show_all = true;
+        } else if (strcmp(argv[i], "-h") == 0 ||
+                   strcmp(argv[i], "--human-readable") == 0) {
+            human_readable = true;
+        }
+    }
+
+    const char *path = ".";
+    run_ls(path);
+
+    return 0;
+}
+
+void display_help() {
+    printf("Usage: _ls [OPTION]... [FILE]...\n");
+    printf("List information about the FILEs (the current directory by "
+           "default).\n\n");
+    printf("Options:\n");
+    printf("  -a, --all              do not ignore entries starting with .\n");
+    printf("  -h, --human-readable   with -l, print sizes in human readable "
+           "format (e.g., 1K 234M 2G)\n");
+    printf("\n");
+}
+
 void print_permissions(mode_t mode) {
     printf((mode & S_IRUSR) ? "r" : "-");
     printf((mode & S_IWUSR) ? "w" : "-");
@@ -26,6 +67,21 @@ void print_permissions(mode_t mode) {
     printf((mode & S_IROTH) ? "r" : "-");
     printf((mode & S_IWOTH) ? "w" : "-");
     printf((mode & S_IXOTH) ? "x" : "-");
+}
+
+void print_size(long size) {
+    if (human_readable) {
+        const char *units[] = {"B", "K", "M", "G", "T", "P", "E"};
+        int unit = 0;
+        double sized = size;
+        while (sized >= 1024 && unit < 6) {
+            sized /= 1024;
+            unit++;
+        }
+        printf("%.*f%s", unit ? 1 : 0, sized, units[unit]);
+    } else {
+        printf("%ld", size);
+    }
 }
 
 void run_ls(const char *path) {
@@ -41,6 +97,10 @@ void run_ls(const char *path) {
     }
 
     while ((entry = readdir(dir)) != NULL) {
+        if (!show_all && entry->d_name[0] == '.') {
+            continue;
+        }
+
         char full_path[1024];
         snprintf(full_path, sizeof(full_path), "%s/%s", path, entry->d_name);
 
@@ -58,7 +118,7 @@ void run_ls(const char *path) {
 
         printf(" %s %s", pw ? pw->pw_name : "", gr ? gr->gr_name : "");
 
-        printf(" %5ld", file_stat.st_size);
+        print_size(file_stat.st_size);
 
         time_info = localtime(&file_stat.st_mtime);
         strftime(time_str, sizeof(time_str), "%b %d %H:%M", time_info);
