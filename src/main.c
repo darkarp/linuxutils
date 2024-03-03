@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../headers/views/ls.h"
+#include "../lib/views/ls.h"
 
 int main(int argc, char *argv[]) {
 #ifdef _WIN32

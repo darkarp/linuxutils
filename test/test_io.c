@@ -4,7 +4,7 @@
 // https://github.com/ThrowTheSwitch/Unity
 
 #include "../../c-dictionary/dict/headers/dict.h"
-#include "../../headers/utils/sort.h"
+#include "../lib/utils/sort.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <string.h>

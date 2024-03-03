@@ -1,7 +1,7 @@
 #include <string.h>
 
-#include "../../headers/utils/str_utils.h"
 #include "ctype.h"
+#include "str_utils.h"
 
 char *strip(char *str) {
     char *end;

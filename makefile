@@ -5,7 +5,7 @@ LDLIBS:= -lm
 SRC:=src
 BIN:=bin
 OBJ:=$(BIN)/obj
-LIB:=headers
+LIB:=lib
 
 .DEFAULT_GOAL := help
 

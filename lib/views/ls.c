@@ -1,4 +1,4 @@
-#include "../../headers/views/ls.h"
+#include "ls.h"
 #include <dirent.h>
 #include <stdio.h>
 

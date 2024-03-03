@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "../../headers/utils/list.h"
+#include "list.h"
 
 typedef struct Node_ *Node;
 struct Node_ {

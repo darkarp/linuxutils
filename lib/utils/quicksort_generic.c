@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "../../headers/utils/sort.h"
+#include "sort.h"
 
 void swap(comparable *collection, const int a, const int b) {
     comparable tmp = collection[a];
