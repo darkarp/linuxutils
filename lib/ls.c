@@ -35,7 +35,7 @@ int run_main(int argc, char *argv[]) {
         }
     }
 
-    const char *path = ".";
+    const char *path = argc > 1 ? argv[1] : ".";
     run_ls(path);
 
     return 0;
