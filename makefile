@@ -30,7 +30,7 @@ create_output_directories:
 	$(shell mkdir -p $(BIN))
 	$(shell mkdir -p $(OBJ))
 
-all: objects build utilities tests ## Builds the project (compiles everything) and tests it
+all: objects build utilities tests end ## Builds the project (compiles everything) and tests it
 
 build: objects $(TARGET) ## Builds the project (doesn't compile utilities)
 $(OBJ)/%.o: $(SRC)/%.c
@@ -68,6 +68,9 @@ run: clean objects build ## Cleans, builds and runs the program
 .PHONY: tests
 tests: ## Runs library tests
 	@printf "\033[33m[i] Skipping tests: not implemented\033[0m\n"
+
+end:
+	@printf "\033[32m[i] Makefile has finished successfully\033[0m\n"
 
 .PHONY: help
 help: ## Display this help message
