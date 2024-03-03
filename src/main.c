@@ -42,11 +42,11 @@ int main(int argc, char *argv[]) {
                    "list\n  %s search <keyword>\n",
                    argv[0], argv[0], argv[0]);
         }
-    } else if (strcmp(argv[1], "fsearch") == 0 && argc == 4) {
+    } else if (strcmp(baseName, "fsearch") == 0 && argc == 4) {
         run_fsearch(argv[2], argv[3]);
-    } else if (strcmp(argv[1], "cat") == 0 && argc == 3) {
+    } else if (strcmp(baseName, "cat") == 0 && argc == 3) {
         run_cat(argv[2]);
-    } else if (strcmp(argv[1], "ln") == 0) {
+    } else if (strcmp(baseName, "ln") == 0) {
         if (argc != 5) {
             printf("Usage: %s ln [-s] <target> <linkname>\n", argv[0]);
             return 1;
@@ -55,9 +55,9 @@ int main(int argc, char *argv[]) {
         const char *target = argv[argc - 2];
         const char *linkname = argv[argc - 1];
         run_ln(target, linkname, symbolic);
-    } else if (strcmp(argv[1], "grep") == 0 && argc >= 4) {
+    } else if (strcmp(baseName, "grep") == 0 && argc >= 4) {
         run_grep(argv[2], argv[3]);
-    } else if (strcmp(argv[1], "wc") == 0 && argc == 3) {
+    } else if (strcmp(baseName, "wc") == 0 && argc == 3) {
         run_wc(argv[2]);
     } else {
         printf("Executable name or command not recognized");
