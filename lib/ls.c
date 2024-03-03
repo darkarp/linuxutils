@@ -74,9 +74,9 @@ void print_size(long size) {
             sized /= 1024;
             unit++;
         }
-        printf("%.*f%s", unit ? 1 : 0, sized, units[unit]);
+        printf(" %.*f%s", unit ? 1 : 0, sized, units[unit]);
     } else {
-        printf("%ld", size);
+        printf(" %ld", size);
     }
 }
 
