@@ -1,6 +1,6 @@
 TARGET:=main
 CC:=gcc
-CFLAGS:=-g -Wall -Wextra -Werror -std=c11 -Wpedantic -MD -MP -fsanitize=address -D_POSIX_C_SOURCE=200809L
+CFLAGS:=-g -Wall -Wextra -Werror -std=c11 -Wpedantic -MD -MP -fsanitize=address -D_DEFAULT_SOURCE
 LDLIBS:= -lm
 SRC:=src
 BIN:=bin

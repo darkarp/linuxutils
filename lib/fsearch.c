@@ -1,4 +1,3 @@
-#define _POSIX_C_SOURCE 200809L
 #include "headers/fsearch.h"
 #include <dirent.h>
 #include <stdio.h>
