@@ -34,7 +34,7 @@ all: objects build utilities tests ## Builds the project (compiles everything) a
 
 build: objects $(TARGET) ## Builds the project (doesn't compile utilities)
 $(OBJ)/%.o: $(SRC)/%.c
-	@echo "\033[32m[i]Compiling $<...\033[0m\n"
+	@printf "\033[32m[i]Compiling $<...\033[0m\n"
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
@@ -44,7 +44,7 @@ $(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
 objects: create_output_directories
 	@printf "\033[32m[i] Compiling library\033[0m\n"
 $(OBJ)/%.o: $(LIB)/%.c
-	@echo "\033[32m[i]Compiling $<...\033[0m\n"
+	@printf "\033[32m[i]Compiling $<...\033[0m\n"
 	$(CC) -c $(CFLAGS) $< -o $@
 
 utilities: ## Create symbolic links for utilities
@@ -52,7 +52,7 @@ utilities: ## Create symbolic links for utilities
 	@printf "\033[32m[i] Creating symbolic links for utilities in $(BIN) directory...\033[0m\n"
 	@cd $(BIN) && \
 	for utility in $(UTILITIES); do \
-		echo "\033[32m[i] Creating link for $$utility\033[0m\n"; \
+		@printf "\033[32m[i] Creating link for $$utility\033[0m\n"; \
 		ln -sf $(TARGET) $$utility; \
 	done
 	@mkdir -p $(BIN)
