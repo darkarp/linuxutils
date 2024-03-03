@@ -34,7 +34,8 @@ all: objects build utilities tests ## Builds the project (compiles everything) a
 
 build: objects $(TARGET) ## Builds the project (doesn't compile utilities)
 $(OBJ)/%.o: $(SRC)/%.c
-	$(CC) -c $(CFLAGS) $^ -o $@
+	@echo "Compiling $<..."
+	$(CC) -c $(CFLAGS) $< -o $@
 
 $(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
 	@printf "\033[32m[i] Generating binary\033[0m\n"
@@ -43,7 +44,8 @@ $(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
 objects: create_output_directories
 	@printf "\033[32m[i] Compiling library\033[0m\n"
 $(OBJ)/%.o: $(LIB)/%.c
-	$(CC) -c $(CFLAGS) $^ -o $@
+	@echo "Compiling $<..."
+	$(CC) -c $(CFLAGS) $< -o $@
 
 utilities: ## Create symbolic links for utilities
 	@mkdir -p $(BIN)
