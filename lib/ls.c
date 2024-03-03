@@ -21,12 +21,7 @@
 bool show_all = false;
 bool human_readable = false;
 
-void print_permissions(mode_t mode);
-void print_size(long size);
-void run_ls(const char *path);
-void display_help();
-
-int main(int argc, char *argv[]) {
+int run_main(int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             display_help();
