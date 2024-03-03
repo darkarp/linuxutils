@@ -6,6 +6,7 @@ SRC:=src
 BIN:=bin
 OBJ:=$(BIN)/obj
 LIB:=lib
+UTILITIES:=ls ln grep cat fsearch snip wc
 
 .DEFAULT_GOAL := help
 
@@ -43,6 +44,9 @@ objects: create_output_directories
 	@printf "\033[32m[i] Compiling library\033[0m\n"
 $(OBJ)/%.o: $(LIB)/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
+
+utilities: ## Create symbolic links for utilities
+	@cd $(BIN) && $(foreach utility,$(UTILITIES),ln -sf $(TARGET) $(utility);)
 
 clean: ## Deletes the build folder
 	@printf "\033[33m[i] Deleting build folder: $(BIN)\033[0m\n"
