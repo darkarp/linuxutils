@@ -10,9 +10,6 @@
 #include "../lib/headers/snip.h"
 
 int main(int argc, char *argv[]) {
-#ifdef _WIN32
-    _setmode(_fileno(stdout), _O_BINARY);
-#endif
     char *progName = argv[0];
     char *baseName = strrchr(progName, '/');
     if (!baseName) {
