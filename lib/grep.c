@@ -19,7 +19,8 @@ void run_grep(const char *pattern, const char *filepath) {
     char msgbuf[100];
     reti = regcomp(&regex, pattern, 0);
     if (reti) {
-        fprintf(stderr, "Could not compile regex\n");
+        regerror(reti, &regex, msgbuf, sizeof(msgbuf));
+        fprintf(stderr, "Regex compilation failed: %s\n", msgbuf);
         exit(1);
     }
 
@@ -30,6 +31,10 @@ void run_grep(const char *pattern, const char *filepath) {
         reti = regexec(&regex, line, 0, NULL, 0);
         if (!reti) {
             printf(MATCH_COLOR "%s" RESET_COLOR, line);
+        } else if (reti != REG_NOMATCH) {
+            regerror(reti, &regex, msgbuf, sizeof(msgbuf));
+            fprintf(stderr, "Regex execution failed: %s\n", msgbuf);
+            break;
         }
     }
 
