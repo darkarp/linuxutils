@@ -36,4 +36,4 @@ mathematica
 `./wc /path/to/file`: Count lines, words, characters, and bytes in a file
 
 ## Bonus:
-- `./cat example.txt | grep 'some-pattern'`: This command concatenates and displays the content of `example.txt`, piping it through `grep` to filter and display lines that match 'some-pattern'.
+- `./cat example.txt | ./grep 'some-pattern'`: This command concatenates and displays the content of `example.txt`, piping it through `grep` to filter and display lines that match 'some-pattern'.
