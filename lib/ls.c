@@ -22,7 +22,7 @@ bool show_all = false;
 bool human_readable = false;
 
 void display_help() {
-    printf("Usage: _ls [OPTION]... [DIRECTORY]\n");
+    printf("Usage: ls [OPTION]... [DIRECTORY]\n");
     printf("List information about the DIRECTORY's contents (current directory "
            "by default).\n\n");
     printf("Options:\n");
