@@ -1,4 +1,4 @@
-#include "../headers/cat.h"
+#include "headers/cat.h"
 #include <stdio.h>
 #include <stdlib.h>
 
