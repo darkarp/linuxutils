@@ -30,9 +30,9 @@ create_output_directories:
 	$(shell mkdir -p $(BIN))
 	$(shell mkdir -p $(OBJ))
 
-all: objects build tests ## Builds the project (compiles everything) and tests it
+all: objects build utilities tests ## Builds the project (compiles everything) and tests it
 
-build: objects $(TARGET) ## Builds the project (compiles everything)
+build: objects $(TARGET) ## Builds the project (doesn't compile utilities)
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
 
