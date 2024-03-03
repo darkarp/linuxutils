@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
                    "their "
                    "names, starting in /home/user/docs.\n");
         }
-    } else if (strcmp(baseName, "cat") == 0 && argc == 2) {
+    } else if (strcmp(baseName, "cat") == 0) {
         run_cat(argv[1]);
     } else if (strcmp(baseName, "ln") == 0) {
         if (argc != 4) {
@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
         const char *target = argv[argc - 2];
         const char *linkname = argv[argc - 1];
         run_ln(target, linkname, symbolic);
-    } else if (strcmp(baseName, "grep") == 0 && argc >= 3) {
+    } else if (strcmp(baseName, "grep") == 0) {
         run_grep(argv[1], argv[2]);
     } else if (strcmp(baseName, "wc") == 0 && argc == 2) {
         run_wc(argv[1]);
