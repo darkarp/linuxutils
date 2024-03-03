@@ -24,7 +24,7 @@
 
 - `./ln /path/to/target /path/to/linkname`: Create a hard link to a target file
 
-- `./ln -s /path/to/target /path/to/symlink: Create a symbolic link to a target file
+- `./ln -s /path/to/target /path/to/symlink`: Create a symbolic link to a target file
 
 ## `grep` - Pattern Search in Text
 
