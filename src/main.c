@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include "../lib/headers/ls.h"
+#include "../lib/headers/snip.h"
 
 int main(int argc, char *argv[]) {
 #ifdef _WIN32
