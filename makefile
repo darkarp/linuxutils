@@ -46,8 +46,8 @@ $(OBJ)/%.o: $(LIB)/%.c
 	$(CC) -c $(CFLAGS) $^ -o $@
 
 utilities: ## Create symbolic links for utilities
-    @mkdir -p $(BIN)
-    @cd $(BIN) && $(foreach utility,$(UTILITIES),ln -sf $(TARGET) $(utility);)
+	@mkdir -p $(BIN)
+	@cd $(BIN) && $(foreach utility,$(UTILITIES),ln -sf $(TARGET) $(utility);)
 
 clean: ## Deletes the build folder
 	@printf "\033[33m[i] Deleting build folder: $(BIN)\033[0m\n"
