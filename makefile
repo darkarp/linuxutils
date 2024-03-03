@@ -34,25 +34,25 @@ all: objects build utilities tests end ## Builds the project (compiles everythin
 
 build: objects $(TARGET) ## Builds the project (doesn't compile utilities)
 $(OBJ)/%.o: $(SRC)/%.c
-	@echo "\033[32m[i]Compiling $<...\033[0m"
+	@echo "\033[34m[i]Compiling $<...\033[0m"
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
-	@printf "\033[32m[i] Generating binary\033[0m\n"
+	@printf "\033[34m[i] Generating binary\033[0m\n"
 	$(CC) $(CFLAGS) $^ $(LDLIBS) -o $(BIN)/$@
 
 objects: create_output_directories
-	@printf "\033[32m[i] Compiling library\033[0m\n"
+	@printf "\033[34m[i] Compiling library\033[0m\n"
 $(OBJ)/%.o: $(LIB)/%.c
-	@echo "\033[32m[i]Compiling $<...\033[0m"
+	@echo "\033[34m[i]Compiling $<...\033[0m"
 	$(CC) -c $(CFLAGS) $< -o $@
 
 utilities: ## Create symbolic links for utilities
 	@mkdir -p $(BIN)
-	@printf "\033[32m[i] Creating symbolic links for utilities in $(BIN) directory...\033[0m\n"
+	@printf "\033[34m[i] Creating symbolic links for utilities in $(BIN) directory...\033[0m\n"
 	@cd $(BIN) && \
 	for utility in $(UTILITIES); do \
-		echo "\033[32m[i] Creating link for $$utility\033[0m"; \
+		echo "\033[34m[i] Creating link for $$utility\033[0m"; \
 		ln -sf $(TARGET) $$utility; \
 	done
 	@mkdir -p $(BIN)
@@ -75,4 +75,4 @@ end: ## Prints the end message
 
 .PHONY: help
 help: ## Display this help message
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[34m%-20s\033[0m %s\n", $$1, $$2}'
