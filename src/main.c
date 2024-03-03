@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
 
     if (strcmp(baseName, "ls") == 0) {
         const char *path = argc > 1 ? argv[1] : ".";
-        run_main(path);
-        run_ls(path);
+        run_main(argc, argv);
+        // run_ls(path);
     } else if (strcmp(baseName, "snip") == 0) {
         if (argc > 1) {
             if (strcmp(argv[1], "add") == 0 && argc == 4) {
