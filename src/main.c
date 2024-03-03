@@ -8,8 +8,6 @@
 
 #include "../headers/views/ls.h"
 
-void run_ls(const char *path);
-
 int main(int argc, char *argv[]) {
 #ifdef _WIN32
     _setmode(_fileno(stdout), _O_BINARY);
