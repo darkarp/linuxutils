@@ -1,4 +1,4 @@
-#include "../headers/wc.h"
+#include "headers/wc.h"
 #include <stdio.h>
 #include <stdlib.h>
 
