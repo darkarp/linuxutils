@@ -1,4 +1,4 @@
-#include "../headers/snip.h"
+#include "headers/snip.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
